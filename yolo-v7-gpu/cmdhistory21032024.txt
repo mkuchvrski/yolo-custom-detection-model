@@ -1,0 +1,32 @@
+cd "OneDrive - Capgemini
+cd Desktop\PJATK\master\udemy
+cd yolo
+dir
+cd repos
+dir
+cd yolov7-gpu
+dir
+python split_dataset.py --folder face_mask --train 80 --validation 10 --test 10 --dest face_mask_dataset
+cd data
+python split_dataset.py --folder face_mask --train 80 --validation 10 --test 10 --dest face_mask_dataset
+cd ..
+python train.py --workers 0  --batch-size=4 --device 0 --data data\face_mask.yaml --img 640 640 --cfg cfg\training\yolov7-face_mask.yaml --weights yolov7_training.pt --name yolov7-face-mask --hyp data\hyp.scrtach.custom.yaml --epochs 300
+python train.py --workers 0  --batch-size=4 --device 0 --data data\face_mask.yaml --img 640 640 --cfg cfg\training\yolov7-face_mask.yaml --weights yolov7_training.pt --name yolov7-face-mask --hyp data\hyp.scratch.custom.yaml --epochs 300
+tensorboard --logdir runs\train
+python train.py --workers 0  --batch-size=4 --device 0 --data data\face_mask.yaml --img 640 640 --cfg cfg\training\yolov7-face_mask.yaml --weights yolov7_training.pt --name yolov7-face-mask --hyp data\hyp.scratch.custom.yaml --epochs 50
+python detect.py --weights runs\train\yolov7-face-mask\weights\best.pt --source inference\face-massk.png
+python detect.py --weights runs\train\yolov7-face-mask\weights\best.pt --source inference\face-mask.png
+python detect.py --weights runs\train\yolov7-face-mask\weights\best.pt --source inference\face-mask-video.mp4 --view-img
+cd data\archive\XmlToTxt-master
+pip install -r requirements.txt
+dir
+python xmltotxt.py -c cls.txt -xml ../annotations -out ../labels
+cd ..
+cd data
+python split_dataset.py --folder helmets --train 80 --validation 10 --test 10 --dest face_mask_dataset
+python split_dataset.py --folder helmets --train 80 --validation 10 --test 10 --dest helmets_splitted
+doskey/HISTORY > cmdhistory.txt
+cd ..
+python train.py --workers 0  --batch-size=4 --device 0 --data data\helmets.yaml --img 416 416 --cfg cfg\training\yolov7-helmets.yaml --weights yolov7_training.pt --name yolov7-helmets-v1 --hyp data\hyp.scratch.custom.yaml --epochs 20
+python detect.py --weights runs\train\yolov7-helmets-v1\weights\best.pt --source inference\helmets_tests
+doskey/HISTORY > cmdhistory21032024.txt
