@@ -24,3 +24,4 @@ Streamlit app is written in main_st.py file, run:
 ```bash
 cd yolo-v7-gpu
 streamlit run main_st.py
+```
