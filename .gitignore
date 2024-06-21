@@ -1,3 +1,4 @@
-./yolov7-gpu/data/*
+./yolo-v7-gpu/data/*
 ./venv/*
 venv/*
+/yolo-v7-gpu/runs/detect/*
